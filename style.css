@@ -1,0 +1,87 @@
+body {
+    font-family: "SF-Pro"; /* Замените на ваш кастомный шрифт */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #fff;
+    padding-left: 140px; /* Increased padding for more indentation */
+    font-size: 1.2em; /* Increase base font size */
+}
+
+.container {
+    text-align: left;
+}
+
+p {
+    margin: 0;
+    font-size: 2.4em; /* Increase paragraph font size */
+    color: #555555;
+}
+
+.highlight {
+    color: #3366ff;
+    font-family: "SF-Pro-Rounded";
+}
+
+.icons {
+    margin-top: 5px; /* Adjusted margin for higher positioning */
+    display: inline-block;
+}
+
+.icons img {
+    width: 32px; /* Increase icon size */
+    height: 32px;
+    margin-right: 5px; /* Reduced space between icons */
+}
+
+.icons .icons + .icons {
+    margin-left: 5px; /* Add margin between icons */
+}
+
+@font-face {
+    font-family: 'SF-Pro';
+    src: url('fonts/SF-Pro.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SF-Pro-Rounded';
+    src: url('fonts/SF-Pro-Rounded.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.blinking-cursor {
+    position: relative;
+    top: -0.1em; /* Adjusted to align with text */
+    margin-left: 2px; /* Adjust for better alignment */
+    font-size: 1em; /* Smaller size for better alignment */
+}
+
+@keyframes blink {
+    from, to { visibility: hidden; }
+    50% { visibility: visible; }
+}
+
+.container p + p {
+    margin-top: 5px; /* Reduced margin between paragraphs */
+}
+
+.download-button {
+    display: inline-block;
+    margin-left: 20px;
+    padding: 10px 20px;
+    background-color: #3366ff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.download-button:hover {
+    background-color: #254eda;
+    padding-right: 140px;
+}
