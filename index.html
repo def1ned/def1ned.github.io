@@ -3,37 +3,54 @@
 <head>
     <title>Видео со звуком</title>
     <style>
-        body { margin: 0; padding: 0; background: black; }
+        body { margin: 0; padding: 0; background: #000; }
         video { width: 100%; height: 100vh; object-fit: cover; }
-        #playButton { 
-            position: fixed; 
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%); 
-            padding: 10px 20px;
-            font-size: 16px;
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
             z-index: 100;
+        }
+        #startButton {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <video id="videoPlayer" loop>
+    <video id="video" loop>
         <source src="video.mp4" type="video/mp4">
     </video>
-    <button id="playButton">Включить звук</button>
+
+    <div id="overlay">
+        <button id="startButton">Начать просмотр</button>
+    </div>
 
     <script>
-        const video = document.getElementById('videoPlayer');
-        const button = document.getElementById('playButton');
+        const video = document.getElementById('video');
+        const overlay = document.getElementById('overlay');
         
-        // Пытаемся запустить без звука (если поддержано)
+        // Пытаемся запустить без звука
         video.muted = true;
-        video.play().catch(e => console.log("Автозапуск заблокирован"));
-        
-        // Включаем звук по клику
-        button.addEventListener('click', () => {
+        video.play().then(() => {
+            // Если видео запустилось, убираем overlay
+            overlay.style.display = 'none';
+        }).catch(e => {
+            console.log("Требуется взаимодействие");
+        });
+
+        // Включаем звук и скрываем overlay по клику
+        document.getElementById('startButton').addEventListener('click', () => {
             video.muted = false;
-            button.style.display = 'none';
+            overlay.style.display = 'none';
+            video.play();
         });
     </script>
 </body>
