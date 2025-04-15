@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автовоспроизведение MP3</title>
+</head>
+<body>
+    <h1>Музыка играет автоматически</h1>
+    
+    <!-- Аудио-элемент (можно скрыть) -->
+    <audio id="autoplayAudio" controls autoplay>
+        <source src="ваш-файл.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудиоэлемент.
+    </audio>
+
+    <script>
+        // Дополнительный скрипт для гарантированного воспроизведения
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('autoplayAudio');
+            audio.play().catch(e => console.log("Автовоспроизведение заблокировано:", e));
+        });
+    </script>
+</body>
+</html>
