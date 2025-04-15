@@ -1,39 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Бесконечное видео</title>
+    <title>Видео со звуком</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #000;
-        }
-        video {
-            max-width: 100%;
-            max-height: 100%;
+        body { margin: 0; padding: 0; background: black; }
+        video { width: 100%; height: 100vh; object-fit: cover; }
+        #playButton { 
+            position: fixed; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            padding: 10px 20px;
+            font-size: 16px;
+            z-index: 100;
         }
     </style>
 </head>
 <body>
-    <video id="loopVideo" autoplay muted>
+    <video id="videoPlayer" loop>
         <source src="video.mp4" type="video/mp4">
-        Ваш браузер не поддерживает видео.
     </video>
+    <button id="playButton">Включить звук</button>
 
     <script>
-        const video = document.getElementById('loopVideo');
+        const video = document.getElementById('videoPlayer');
+        const button = document.getElementById('playButton');
         
-        // Бесконечный цикл
-        video.addEventListener('ended', function() {
-            this.currentTime = 0;
-            this.play();
-        }, false);
+        // Пытаемся запустить без звука (если поддержано)
+        video.muted = true;
+        video.play().catch(e => console.log("Автозапуск заблокирован"));
+        
+        // Включаем звук по клику
+        button.addEventListener('click', () => {
+            video.muted = false;
+            button.style.display = 'none';
+        });
     </script>
 </body>
 </html>
