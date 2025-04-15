@@ -3,23 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Автовоспроизведение MP3</title>
+    <title>Бесконечное видео</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+        }
+        video {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
 </head>
 <body>
-    <h1>Музыка играет автоматически</h1>
-    
-    <!-- Аудио-элемент (можно скрыть) -->
-    <audio id="autoplayAudio" controls autoplay>
-        <source src="ваш-файл.mp3" type="audio/mpeg">
-        Ваш браузер не поддерживает аудиоэлемент.
-    </audio>
+    <video id="loopVideo" autoplay muted>
+        <source src="video.mp4" type="video/mp4">
+        Ваш браузер не поддерживает видео.
+    </video>
 
     <script>
-        // Дополнительный скрипт для гарантированного воспроизведения
-        document.addEventListener('DOMContentLoaded', function() {
-            const audio = document.getElementById('autoplayAudio');
-            audio.play().catch(e => console.log("Автовоспроизведение заблокировано:", e));
-        });
+        const video = document.getElementById('loopVideo');
+        
+        // Бесконечный цикл
+        video.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        }, false);
     </script>
 </body>
 </html>
